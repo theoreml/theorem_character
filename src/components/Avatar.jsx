@@ -11,9 +11,9 @@ import { useFrame } from '@react-three/fiber'
 
 export function Avatar(props) {
   const {animation } = props;
-  const { wireframe, pause  } = useControls({
-    wireframe: false,
-    pause: false,
+  const { wireframe} = useControls({
+    // wireframe: false,
+    
   })
   
   const group = useRef()
@@ -30,11 +30,7 @@ export function Avatar(props) {
 
   const { actions } = useAnimations([hypeboy[0], goated[0], unforgiven[0]] ,group)
 
-  useFrame((state) => {
-    if (pause) {
-      group.current.getObjectByName("Bip001 Neck" ).lookAt(state.camera.position)
-    }
-  })
+  
 
   useEffect(() => {
     actions[animation].reset().play()
@@ -43,11 +39,11 @@ export function Avatar(props) {
     }
   }, [animation])
 
-  useEffect(() => {
-    Object.values(materials).forEach((material) => {
-      material.wireframe = wireframe
-    });
-  }, [wireframe]);  
+  // useEffect(() => {
+  //   Object.values(materials).forEach((material) => {
+  //     material.wireframe = wireframe
+  //   });
+  // }, [wireframe]);  
 
   
   return (
